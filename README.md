@@ -20,5 +20,8 @@ https://try.github.io/levels/1/challenges/1
   You will also need to install the libraries and add them into eclipse for the NavX - MXP (our imu, ahrs, gyro, compass, etc). You can find instructions here: 	https://www.pdocs.kauailabs.com/navx-mxp/software/roborio-libraries/java/
   
 ## Coding Refernce
+[WPILib Suite JavaDocs](http://first.wpi.edu/FRC/roborio/release/docs/java/)
+
+[WPILib Suite GitHub](https://github.com/wpilibsuite)
 
 Reference and tutorials for coding an FRC Robot are available here. https://wpilib.screenstepslive.com/s/currentCS/m/java
