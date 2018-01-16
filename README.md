@@ -1,6 +1,8 @@
 # 496PowerUP
 2018 code
 
+![PowerUP Logo](logo.png)
+
 ## Using git and GitHub
 Students give this a try to learn how git works. Git is a version control system that allows us to share code.
 https://try.github.io/levels/1/challenges/1
