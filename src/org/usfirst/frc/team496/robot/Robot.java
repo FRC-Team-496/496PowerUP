@@ -7,14 +7,16 @@
 
 package org.usfirst.frc.team496.robot;
 
+import org.usfirst.frc.team496.robot.commands.Auto;
+import org.usfirst.frc.team496.robot.commands.DriveTo;
+import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team496.robot.commands.ExampleCommand;
-import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -42,9 +44,12 @@ public class Robot extends TimedRobot {
 
 		driveTrain = new DriveTrain();
 
-		m_chooser.addDefault("Default Auto", new ExampleCommand());
+		m_chooser.addDefault("Default Auto", new Auto());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		SmartDashboard.putData("drive 20 inches", new DriveTo(10));
+		
+		
 	}
 
 	/**
@@ -89,6 +94,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.start();
 		}
+		SmartDashboard.putData("AHRS", driveTrain.getGyro());
 	}
 
 	/**
@@ -97,6 +103,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+	
 	}
 
 	@Override
@@ -116,6 +123,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+	
+		
 	}
 
 	/**
