@@ -1,13 +1,16 @@
 package org.usfirst.frc.team496.robot.commands;
 
+import org.usfirst.frc.team496.robot.FieldConstants;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Auto extends CommandGroup {
+public class LeftStationLeftSwitch extends CommandGroup {
 
-    public Auto() {
+    public LeftStationLeftSwitch() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -24,8 +27,10 @@ public class Auto extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-      //addSequential(new RotateToAngle(45f));
-      //addSequential(new DriveTo(100.0));
-      //addSequential(new RotateToAngle(180f));
+    	   	addSequential(new DriveTo(FieldConstants.lengthToSwitch));
+        addSequential(new RotateToAngle(90f));
+        addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn));
+        // fix this, possibly wrong distance
     }
+    
 }

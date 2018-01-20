@@ -128,7 +128,7 @@ public class DriveTrain extends Subsystem {
       return true;
     }
 
-    driveTrain.driveCartesian(0, 0, dummyOutput.get() *-0.6);
+    driveTrain.driveCartesian(0, 0, dummyOutput.get() *-0.5);
     //Timer.delay(0.005); // wait for a motor update time
 
     return false;
@@ -156,7 +156,7 @@ public class DriveTrain extends Subsystem {
       return true;
     }
 
-    driveTrain.driveCartesian(dummy2.get()*-0.6, 0, dummyOutput.get() * -0.6);
+    driveTrain.driveCartesian(dummy2.get()*-0.4, 0, dummyOutput.get() *-0.5);
     return false;
   }
 

@@ -9,9 +9,11 @@ package org.usfirst.frc.team496.robot;
 
 import org.usfirst.frc.team496.robot.commands.Auto;
 import org.usfirst.frc.team496.robot.commands.DriveTo;
+import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -31,9 +33,9 @@ public class Robot extends TimedRobot {
 
 	public static DriveTrain driveTrain;
 
-	Command m_autonomousCommand;
+	
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+	SendableChooser<String> driverStationPosition = new SendableChooser<>();
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -48,6 +50,11 @@ public class Robot extends TimedRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		SmartDashboard.putData("drive 20 inches", new DriveTo(10));
+		SmartDashboard.putData("Station Position", driverStationPosition);
+		driverStationPosition.addObject("Left Station", "Left Station");
+		driverStationPosition.addObject("Center Station", "Center Station");
+		driverStationPosition.addObject("Right Station", "Right Station");
+		
 		
 		
 	}
@@ -79,21 +86,50 @@ public class Robot extends TimedRobot {
 	 * chooser code above (like the commented example) or additional comparisons to
 	 * the switch structure below with additional strings & commands.
 	 */
-	@Override
-	public void autonomousInit() {
-		m_autonomousCommand = m_chooser.getSelected();
-
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
-		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-		 * ExampleCommand(); break; }
-		 */
-
-		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+	
+		
+	
+		public void leftStart(String gameData)
+		{
+			if(gameData.charAt(0) == 'L')
+			{
+				Command x = new LeftStationLeftSwitch();
+				x.start();
+			}
 		}
+	
+		public void	centerStart(String gameData)
+		{
+			
+		}
+		
+		public void rightStart(String gameData)
+		{
+			
+		}
+	
+	@Override
+		
+		public void autonomousInit() {
+		String StationPosition = driverStationPosition.getSelected();
+		
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		if(StationPosition.equals("Left Station"))
+		{
+			leftStart(gameData);
+		} 
+		else if(StationPosition.equals("Center Station"))
+		{
+			centerStart(gameData);
+		}
+		else
+		{
+			rightStart(gameData);
+		}
+		
+		
+		
 		SmartDashboard.putData("AHRS", driveTrain.getGyro());
 	}
 
@@ -112,9 +148,9 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
-		}
+		//if (m_autonomousCommand != null) {
+			//m_autonomousCommand.cancel();
+		//}
 	}
 
 	/**
