@@ -1,5 +1,7 @@
 package org.usfirst.frc.team496.robot.commands;
 
+import org.usfirst.frc.team496.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -8,6 +10,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class Auto extends CommandGroup {
 
     public Auto() {
+    	
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -25,7 +28,7 @@ public class Auto extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
       //addSequential(new RotateToAngle(45f));
-      addSequential(new DriveTo(100.0));
-      addSequential(new RotateToAngle(180f));
+      //addSequential(new DriveTo(100.0));
+      //addSequential(new RotateToAngle(180f));
     }
 }

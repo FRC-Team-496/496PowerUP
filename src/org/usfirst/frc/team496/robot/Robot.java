@@ -102,6 +102,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+    	System.out.println(Robot.driveTrain.getDistance());
+
 		Scheduler.getInstance().run();
 	
 	}
