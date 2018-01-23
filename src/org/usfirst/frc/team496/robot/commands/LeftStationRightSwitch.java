@@ -1,5 +1,7 @@
 package org.usfirst.frc.team496.robot.commands;
 
+import org.usfirst.frc.team496.robot.FieldConstants;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -23,8 +25,10 @@ public class LeftStationRightSwitch extends CommandGroup {
         // would require.
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
-    		addSequential(new DriveTo(168.0));
+	   	addSequential(new DriveTo(FieldConstants.lengthPastSwitch));
         addSequential(new RotateToAngle(90f));
-        addSequential(new DriveTo(10.0));
+        addSequential(new DriveTo(FieldConstants.lengthOfSwitches));
+        addSequential(new RotateToAngle(90f));
+        addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn));
     }
 }
