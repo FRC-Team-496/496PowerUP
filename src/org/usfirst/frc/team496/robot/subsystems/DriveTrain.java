@@ -50,7 +50,7 @@ public class DriveTrain extends Subsystem {
   boolean changed;
   static final double kP = 0.1;
   static final double kI = 0.00;
-  static final double kD = 0;
+  static final double kD = 0.5;
   static final double kF = 0.00;
   /* This tuning parameter indicates how close to "on target" the */
   /* PID Controller will attempt to get. */
@@ -75,8 +75,8 @@ public class DriveTrain extends Subsystem {
     }
     
     turnController = new PIDController(kP, kI, kD, kF, ahrs, dummyOutput);
-    turnController.disable();
-    turnController.setAbsoluteTolerance(2f);
+    
+    turnController.setAbsoluteTolerance(1f);
     turnController.setOutputRange(-1, 1);
     turnController.setInputRange(-180f, 180f);
     turnController.setContinuous(true);
@@ -121,10 +121,10 @@ public class DriveTrain extends Subsystem {
 
     System.out.println("Error: " + turnController.get() + "  Degrees Turned: "
         + ahrs.getYaw() + " On target: " + turnController.onTarget());
-    if (Math.abs(turnController.getError()) < 2) {
+    if (Math.abs(turnController.getError()) < 1) {
       stop();
       driveTrain.driveCartesian(0, 0, 0);
-      turnController.disable();
+      //turnController.disable();
       return true;
     }
 
@@ -134,7 +134,7 @@ public class DriveTrain extends Subsystem {
     return false;
   }
 
-  public boolean driveTo(double inches) {
+  public boolean driveTo(double inches, float angle) {
 
     if (!driveTo.isEnabled()) {
       
@@ -146,17 +146,17 @@ public class DriveTrain extends Subsystem {
     driveTo.setOutputRange(-1.0, 1.0);
     driveTo.setSetpoint(inches);
     
-    turnController.setSetpoint(0f);
+    turnController.setSetpoint(angle);
 
     System.out.println("Error: " + driveTo.getError() + " Distance: " + enc1.getDistance());
     
     if (Math.abs(driveTo.getError()) < ABS_TOLERANCE_DRIVETO_DISTANCE) {
-      driveTo.disable();
+      //driveTo.disable();
       stop();
       return true;
     }
 
-    driveTrain.driveCartesian(dummy2.get()*-0.6, 0, dummyOutput.get() * -0.6);
+    driveTrain.driveCartesian(dummy2.get()*-0.6, 0, dummyOutput.get() * -0.4);
     return false;
   }
 

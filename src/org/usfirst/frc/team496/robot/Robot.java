@@ -47,7 +47,6 @@ public class Robot extends TimedRobot {
 		m_chooser.addDefault("Default Auto", new Auto());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		SmartDashboard.putData("drive 20 inches", new DriveTo(10));
 		
 		
 	}
@@ -81,6 +80,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+	    Robot.driveTrain.resetGyro();
+	    //System.out.println("GYRO IS BEING RESET IN AUTO INIT");
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*

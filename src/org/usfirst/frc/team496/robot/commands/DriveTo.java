@@ -11,25 +11,27 @@ import edu.wpi.first.wpilibj.command.Command;
 public class DriveTo extends Command {
 
   private double inches;
+  private float angle;
   private boolean finished;
 
-  public DriveTo(double inches) {
+  public DriveTo(double inches, float angle) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.driveTrain);
     this.inches = inches;
+    this.angle = angle;
   }
 
 
   // Called just before this Command runs the first time
   protected void initialize() {
     Robot.driveTrain.resetEnc1();
-    Robot.driveTrain.resetGyro();
+    //Robot.driveTrain.resetGyro();
   }
 
   // Called repeatedly when this Command is scheduled to run
   protected void execute() {
-    finished = Robot.driveTrain.driveTo(inches);
+    finished = Robot.driveTrain.driveTo(inches,angle);
   }
 
   // Make this return true when this Command no longer needs to run execute()
