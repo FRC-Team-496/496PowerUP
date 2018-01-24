@@ -25,9 +25,9 @@ public class LeftStationLeftSwitch extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    	   	addSequential(new DriveTo(FieldConstants.lengthToSwitch));
+    	   	addSequential(new DriveTo(FieldConstants.lengthToSwitch, 0f));
         addSequential(new RotateToAngle(90f));
-        addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn));
+        addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn, 90f));
         // fix this, possibly wrong distance
     }
     

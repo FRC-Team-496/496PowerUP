@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
 		m_chooser.addDefault("Default Auto", new Auto());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		SmartDashboard.putData("drive 20 inches", new DriveTo(10));
+		SmartDashboard.putData("drive 20 inches", new DriveTo(10, 0));
 		SmartDashboard.putData("Station Position", driverStationPosition);
 		SmartDashboard.putData("Cross The Auto Line Only", crossTheAutoLine);
 		driverStationPosition.addObject("Left Station", "Left Station");
@@ -62,6 +62,7 @@ public class Robot extends TimedRobot {
 		driverStationPosition.addObject("Right Station", "Right Station");
 		crossTheAutoLine.addObject("False", false);
 		crossTheAutoLine.addObject("True", true);
+
 		
 
 	}
@@ -93,6 +94,7 @@ public class Robot extends TimedRobot {
 	 * chooser code above (like the commented example) or additional comparisons to
 	 * the switch structure below with additional strings & commands.
 	 */
+
 	
 		
 	
@@ -121,6 +123,8 @@ public class Robot extends TimedRobot {
 				x.start();
 			}
 		}
+
+	
 	
 		public void	centerStart(String gameData)
 		{
@@ -144,6 +148,8 @@ public class Robot extends TimedRobot {
 	@Override
 		
 		public void autonomousInit() {
+		 Robot.driveTrain.resetGyro();
+	
 		String StationPosition = driverStationPosition.getSelected();
 		
 		

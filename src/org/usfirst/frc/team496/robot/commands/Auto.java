@@ -21,11 +21,16 @@ public class Auto extends CommandGroup {
 
         // A command group will require all of the subsystems that each member
         // would require.
-        // e.g. if Command1 requires chassis, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chassis and the
+        // e.g. if Command1 requires chases, and Command2 requires arm,
+        // a CommandGroup containing them would require both the chases and the
         // arm.
       //addSequential(new RotateToAngle(45f));
-      //addSequential(new DriveTo(100.0));
-      //addSequential(new RotateToAngle(180f));
-    }
+      //addSequential(new DriveTo(20.0,0f));
+      //addSequential(new Delay());
+      //addSequential(new RotateToAngle(90f));
+      //addSequential(new Delay());
+      //addSequential(new DriveTo(10, 90f));
+      
+
+}
 }
