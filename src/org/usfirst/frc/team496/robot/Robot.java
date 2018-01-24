@@ -8,8 +8,12 @@
 package org.usfirst.frc.team496.robot;
 
 import org.usfirst.frc.team496.robot.commands.Auto;
+import org.usfirst.frc.team496.robot.commands.CenterStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.DriveTo;
+import org.usfirst.frc.team496.robot.commands.LeftOrRightAutoLineOnly;
+import org.usfirst.frc.team496.robot.commands.LeftStationLeftScale;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
+import org.usfirst.frc.team496.robot.commands.LeftStationRightSwitch;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
 
@@ -36,6 +40,7 @@ public class Robot extends TimedRobot {
 	
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	SendableChooser<String> driverStationPosition = new SendableChooser<>();
+	SendableChooser<Boolean> crossTheAutoLine = new SendableChooser<>();
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -51,12 +56,14 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 		SmartDashboard.putData("drive 20 inches", new DriveTo(10));
 		SmartDashboard.putData("Station Position", driverStationPosition);
+		SmartDashboard.putData("Cross The Auto Line Only", crossTheAutoLine);
 		driverStationPosition.addObject("Left Station", "Left Station");
 		driverStationPosition.addObject("Center Station", "Center Station");
 		driverStationPosition.addObject("Right Station", "Right Station");
+		crossTheAutoLine.addObject("False", false);
+		crossTheAutoLine.addObject("True", true);
 		
-		
-		
+
 	}
 
 	/**
@@ -91,9 +98,26 @@ public class Robot extends TimedRobot {
 	
 		public void leftStart(String gameData)
 		{
-			if(gameData.charAt(0) == 'L')
+			
+			if(crossTheAutoLine.getSelected() == true)
+			{
+				Command x = new LeftOrRightAutoLineOnly();
+				x.start();
+			}
+			
+			else if(gameData.charAt(0) == 'L'&& gameData.charAt(1) == 'R')
 			{
 				Command x = new LeftStationLeftSwitch();
+				x.start();
+			}
+			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'R')
+			{
+				 Command x = new LeftStationRightSwitch();
+				 x.start();
+			}
+			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'L')
+			{
+				Command x = new LeftStationLeftScale();
 				x.start();
 			}
 		}
@@ -101,17 +125,28 @@ public class Robot extends TimedRobot {
 		public void	centerStart(String gameData)
 		{
 			
+			if(gameData.charAt(0) == 'L')
+			{
+				Command x = new CenterStationLeftSwitch();
+				x.start();
+			}
 		}
 		
 		public void rightStart(String gameData)
 		{
-			
+			if(crossTheAutoLine.getSelected() == true)
+			{
+				Command x = new LeftOrRightAutoLineOnly();
+				x.start();
+			}
 		}
 	
 	@Override
 		
 		public void autonomousInit() {
 		String StationPosition = driverStationPosition.getSelected();
+		
+		
 		
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -127,6 +162,7 @@ public class Robot extends TimedRobot {
 		{
 			rightStart(gameData);
 		}
+		
 		
 		
 		

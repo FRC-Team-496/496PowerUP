@@ -1,8 +1,6 @@
 package org.usfirst.frc.team496.robot.commands;
 
 import org.usfirst.frc.team496.robot.FieldConstants;
-
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
