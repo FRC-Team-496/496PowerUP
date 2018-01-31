@@ -23,6 +23,7 @@ public class OI {
 	// Button button = new JoystickButton(stick, buttonNumber);
 	
 	private XboxController xbox = new XboxController(0);
+	private XboxController op = new XboxController(1);
 
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
@@ -50,5 +51,10 @@ public class OI {
 	
 	public XboxController getJoystick() {
 		return xbox;
+	}
+	
+	public XboxController getOpStick() {
+	  return op;
+	  
 	}
 }

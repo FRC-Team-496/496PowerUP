@@ -4,7 +4,7 @@ public final class FieldConstants
 {
 	public static final double lengthToSwitch = 10.0;  //TODO measure this (- length of robot)
 	public static final double lengthToMiddleOfScale = 10.0; //TODO measure this
-	public static final double toSwitchAfterTurn = 10.0; //TODO measure this
+	public static final double toSwitchAfterTurn = 20.0; //TODO measure this
 	public static final double lengthPastSwitch = 10.0; //TODO measure this
 	public static final double lengthOfSwitches = 10.0; //TODO measure this		
 	public static final double toScaleAfterTurn = 10.0; //TODO measure this

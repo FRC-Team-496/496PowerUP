@@ -26,10 +26,11 @@ public class CenterStationLeftSwitch extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+            System.out.println("Center Station Left Switch");
     		addSequential(new RotateToAngle(-90f));
     		addSequential(new DriveTo(FieldConstants.centerToLeftSwitch, -90f));
-    		addSequential(new RotateToAngle(90f));
-    		addSequential(new DriveTo(FieldConstants.centerToLeftSwitchAfterTurn, -90f));
+    		addSequential(new RotateToAngle(0f));
+    		addSequential(new DriveTo(FieldConstants.centerToLeftSwitchAfterTurn, 0f));
   
     }
 }

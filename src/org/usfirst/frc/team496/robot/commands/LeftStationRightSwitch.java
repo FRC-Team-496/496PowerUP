@@ -27,11 +27,11 @@ public class LeftStationRightSwitch extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
 	   	
     		//Thought I looked cute here, gonna delete later
-    	
-    		addSequential(new DriveTo(FieldConstants.lengthPastSwitch, 0f));
+    	System.out.println("Left Station RightSwitch");
+    	addSequential(new DriveTo(FieldConstants.lengthPastSwitch, 0f));
         addSequential(new RotateToAngle(90f));
         addSequential(new DriveTo(FieldConstants.lengthOfSwitches, 90f));
-        addSequential(new RotateToAngle(90f));
+        addSequential(new RotateToAngle(180f));
         addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn, 180f));
     }
 }

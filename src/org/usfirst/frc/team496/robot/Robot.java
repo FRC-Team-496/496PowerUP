@@ -16,6 +16,7 @@ import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.LeftStationRightSwitch;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team496.robot.subsystems.LinearActuator;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 
 	public static DriveTrain driveTrain;
+	public static LinearActuator linActuator;
 
 	
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -50,19 +52,18 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 
 		driveTrain = new DriveTrain();
+		linActuator = new LinearActuator();
 
-		m_chooser.addDefault("Default Auto", new Auto());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
-		SmartDashboard.putData("drive 20 inches", new DriveTo(10, 0));
-		SmartDashboard.putData("Station Position", driverStationPosition);
-		SmartDashboard.putData("Cross The Auto Line Only", crossTheAutoLine);
+
+	
+
 		driverStationPosition.addObject("Left Station", "Left Station");
 		driverStationPosition.addObject("Center Station", "Center Station");
 		driverStationPosition.addObject("Right Station", "Right Station");
 		crossTheAutoLine.addObject("False", false);
 		crossTheAutoLine.addObject("True", true);
-
+        SmartDashboard.putData("Station Position", driverStationPosition);
+        SmartDashboard.putData("Cross The Auto Line Only", crossTheAutoLine);
 		
 
 	}
@@ -114,6 +115,8 @@ public class Robot extends TimedRobot {
 			}
 			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'R')
 			{
+			  System.out.println("Left Station RightSwitch");
+
 				 Command x = new LeftStationRightSwitch();
 				 x.start();
 			}
@@ -152,10 +155,12 @@ public class Robot extends TimedRobot {
 	
 		String StationPosition = driverStationPosition.getSelected();
 		
-		
+		//Command x = new Auto();
+		//x.start();
 		
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		System.out.println(gameData);
 		if(StationPosition.equals("Left Station"))
 		{
 			leftStart(gameData);
