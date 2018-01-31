@@ -2,7 +2,6 @@ package org.usfirst.frc.team496.robot.commands;
 
 import org.usfirst.frc.team496.robot.Robot;
 
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -42,6 +41,7 @@ public class DriveTo extends Command {
   // Called once after isFinished returns true
   protected void end() {
     Robot.driveTrain.stop();
+    Robot.driveTrain.resetEnc1();
   }
 
   // Called when another command which requires one or more of the same

@@ -3,7 +3,6 @@ package org.usfirst.frc.team496.robot.subsystems;
 import org.usfirst.frc.team496.robot.RobotMap;
 import org.usfirst.frc.team496.robot.commands.driveWithXbox;
 import org.usfirst.frc.team496.util.DummyPIDOutput;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -12,17 +11,20 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
 public class DriveTrain extends Subsystem {
 
+  private int ahrsOnTargetCounter = 0;
+  private static final int MINIMUM_AHRS_ON_TARGET_ITERATIONS = 4;
 
+  private static final double ABS_TOLERANCE_ROTATETO = 1;
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   private Talon m_frontLeft = new Talon(RobotMap.leftFrontMotor);
@@ -38,7 +40,7 @@ public class DriveTrain extends Subsystem {
 
 
   Encoder enc1 = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
-  
+
   double wheel = 6.5;
   double wheel1Ticks = 1082; // our measure was 328
   double circumfrence = Math.PI * wheel;
@@ -46,11 +48,10 @@ public class DriveTrain extends Subsystem {
 
 
 
-
   boolean changed;
   static final double kP = 0.1;
-  static final double kI = 0.00;
-  static final double kD = 0.5;
+  static final double kI = 0.0;
+  static final double kD = 0.1;
   static final double kF = 0.00;
   /* This tuning parameter indicates how close to "on target" the */
   /* PID Controller will attempt to get. */
@@ -73,11 +74,11 @@ public class DriveTrain extends Subsystem {
     } catch (Exception e) {
       System.out.println(e);
     }
-    
+
     turnController = new PIDController(kP, kI, kD, kF, ahrs, dummyOutput);
-    
-    turnController.setAbsoluteTolerance(1f);
-    turnController.setOutputRange(-1, 1);
+
+    turnController.setAbsoluteTolerance(ABS_TOLERANCE_ROTATETO);
+    turnController.setOutputRange(-.5, .5);
     turnController.setInputRange(-180f, 180f);
     turnController.setContinuous(true);
     SmartDashboard.putData("Turn Controller", turnController);
@@ -119,17 +120,28 @@ public class DriveTrain extends Subsystem {
       turnController.enable();
     }
 
-    System.out.println("Error: " + turnController.get() + "  Degrees Turned: "
-        + ahrs.getYaw() + " On target: " + turnController.onTarget());
-    if (Math.abs(turnController.getError()) < 1) {
+    System.out
+        .println("Remaining: " + turnController.get() + "  Degrees Turned: "
+            + ahrs.getYaw() + " On target: " + turnController.onTarget());
+
+    if (Math.abs(turnController.getError()) < ABS_TOLERANCE_ROTATETO) {
+      ahrsOnTargetCounter++;
+    } else {
+      ahrsOnTargetCounter = 0;
+    }
+
+    if (ahrsOnTargetCounter >= MINIMUM_AHRS_ON_TARGET_ITERATIONS) {
+
+
+
       stop();
       driveTrain.driveCartesian(0, 0, 0);
-      //turnController.disable();
+      // turnController.disable();
       return true;
     }
 
-    driveTrain.driveCartesian(0, 0, dummyOutput.get() *-0.6);
-    //Timer.delay(0.005); // wait for a motor update time
+    driveTrain.driveCartesian(0, 0, dummyOutput.get() * -1);
+    // Timer.delay(0.005); // wait for a motor update time
 
     return false;
   }
@@ -137,7 +149,7 @@ public class DriveTrain extends Subsystem {
   public boolean driveTo(double inches, float angle) {
 
     if (!driveTo.isEnabled()) {
-      
+
       driveTo.enable();
     }
     if (!turnController.isEnabled()) {
@@ -145,18 +157,18 @@ public class DriveTrain extends Subsystem {
     }
     driveTo.setOutputRange(-1.0, 1.0);
     driveTo.setSetpoint(inches);
-    
+
     turnController.setSetpoint(angle);
 
-    System.out.println("Error: " + driveTo.getError() + " Distance: " + enc1.getDistance());
-    
+    System.out.println("Remaining: " + driveTo.getError() + " Travelled: "
+        + enc1.getDistance()+ " yaw:"  + ahrs.getYaw() );
+
     if (Math.abs(driveTo.getError()) < ABS_TOLERANCE_DRIVETO_DISTANCE) {
-      //driveTo.disable();
+      driveTo.disable();
       stop();
       return true;
     }
-
-    driveTrain.driveCartesian(dummy2.get()*-0.6, 0, dummyOutput.get() * -0.4);
+    driveTrain.driveCartesian(dummy2.get() * -1, 0, dummyOutput.get() * -1);
     return false;
   }
 
@@ -168,7 +180,7 @@ public class DriveTrain extends Subsystem {
     ahrs.reset();
     System.out.println("RESET GYRO");
   }
-  
+
   public void resetEnc1() {
     enc1.reset();
   }

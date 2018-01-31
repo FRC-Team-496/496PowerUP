@@ -8,10 +8,17 @@
 package org.usfirst.frc.team496.robot;
 
 import org.usfirst.frc.team496.robot.commands.Auto;
+import org.usfirst.frc.team496.robot.commands.CenterStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.DriveTo;
+import org.usfirst.frc.team496.robot.commands.LeftOrRightAutoLineOnly;
+import org.usfirst.frc.team496.robot.commands.LeftStationLeftScale;
+import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
+import org.usfirst.frc.team496.robot.commands.LeftStationRightSwitch;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
+import org.usfirst.frc.team496.robot.subsystems.LinearActuator;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -30,10 +37,12 @@ public class Robot extends TimedRobot {
 	public static OI m_oi;
 
 	public static DriveTrain driveTrain;
+	public static LinearActuator linActuator;
 
-	Command m_autonomousCommand;
+	
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-
+	SendableChooser<String> driverStationPosition = new SendableChooser<>();
+	SendableChooser<Boolean> crossTheAutoLine = new SendableChooser<>();
 	/**
 	 * This function is run when the robot is first started up and should be used
 	 * for any initialization code.
@@ -43,12 +52,20 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 
 		driveTrain = new DriveTrain();
+		linActuator = new LinearActuator();
 
-		m_chooser.addDefault("Default Auto", new Auto());
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
+
+	
+
+		driverStationPosition.addObject("Left Station", "Left Station");
+		driverStationPosition.addObject("Center Station", "Center Station");
+		driverStationPosition.addObject("Right Station", "Right Station");
+		crossTheAutoLine.addObject("False", false);
+		crossTheAutoLine.addObject("True", true);
+        SmartDashboard.putData("Station Position", driverStationPosition);
+        SmartDashboard.putData("Cross The Auto Line Only", crossTheAutoLine);
 		
-		
+
 	}
 
 	/**
@@ -78,23 +95,88 @@ public class Robot extends TimedRobot {
 	 * chooser code above (like the commented example) or additional comparisons to
 	 * the switch structure below with additional strings & commands.
 	 */
-	@Override
-	public void autonomousInit() {
-	    Robot.driveTrain.resetGyro();
-	    //System.out.println("GYRO IS BEING RESET IN AUTO INIT");
-		m_autonomousCommand = m_chooser.getSelected();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		 * switch(autoSelected) { case "My Auto": autonomousCommand = new
-		 * MyAutoCommand(); break; case "Default Auto": default: autonomousCommand = new
-		 * ExampleCommand(); break; }
-		 */
+	
+		
+	
+		public void leftStart(String gameData)
+		{
+			
+			if(crossTheAutoLine.getSelected() == true)
+			{
+				Command x = new LeftOrRightAutoLineOnly();
+				x.start();
+			}
+			
+			else if(gameData.charAt(0) == 'L'&& gameData.charAt(1) == 'R')
+			{
+				Command x = new LeftStationLeftSwitch();
+				x.start();
+			}
+			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'R')
+			{
+			  System.out.println("Left Station RightSwitch");
 
-		// schedule the autonomous command (example)
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.start();
+				 Command x = new LeftStationRightSwitch();
+				 x.start();
+			}
+			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'L')
+			{
+				Command x = new LeftStationLeftScale();
+				x.start();
+			}
 		}
+
+	
+	
+		public void	centerStart(String gameData)
+		{
+			
+			if(gameData.charAt(0) == 'L')
+			{
+				Command x = new CenterStationLeftSwitch();
+				x.start();
+			}
+		}
+		
+		public void rightStart(String gameData)
+		{
+			if(crossTheAutoLine.getSelected() == true)
+			{
+				Command x = new LeftOrRightAutoLineOnly();
+				x.start();
+			}
+		}
+	
+	@Override
+		
+		public void autonomousInit() {
+		 Robot.driveTrain.resetGyro();
+	
+		String StationPosition = driverStationPosition.getSelected();
+		
+		//Command x = new Auto();
+		//x.start();
+		
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		System.out.println(gameData);
+		if(StationPosition.equals("Left Station"))
+		{
+			leftStart(gameData);
+		} 
+		else if(StationPosition.equals("Center Station"))
+		{
+			centerStart(gameData);
+		}
+		else
+		{
+			rightStart(gameData);
+		}
+		
+		
+		
+		
 		SmartDashboard.putData("AHRS", driveTrain.getGyro());
 	}
 
@@ -113,9 +195,9 @@ public class Robot extends TimedRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (m_autonomousCommand != null) {
-			m_autonomousCommand.cancel();
-		}
+		//if (m_autonomousCommand != null) {
+			//m_autonomousCommand.cancel();
+		//}
 	}
 
 	/**

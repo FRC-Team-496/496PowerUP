@@ -1,13 +1,15 @@
 package org.usfirst.frc.team496.robot.commands;
 
+import org.usfirst.frc.team496.robot.FieldConstants;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Auto extends CommandGroup {
+public class LeftStationLeftScale extends CommandGroup {
 
-    public Auto() {
+    public LeftStationLeftScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -21,16 +23,14 @@ public class Auto extends CommandGroup {
 
         // A command group will require all of the subsystems that each member
         // would require.
-        // e.g. if Command1 requires chases, and Command2 requires arm,
-        // a CommandGroup containing them would require both the chases and the
+        // e.g. if Command1 requires chassis, and Command2 requires arm,
+        // a CommandGroup containing them would require both the chassis and the
         // arm.
-      addSequential(new RotateToAngle(0f));
-      //addSequential(new DriveTo(20.0,0f));
-      //addSequential(new Delay());
-      //addSequential(new RotateToAngle(90f));
-      //addSequential(new Delay());
-      //addSequential(new DriveTo(10, 90f));
-      
-
-}
+      System.out.println("LEft Station LEft SCale");
+    		addSequential(new DriveTo(FieldConstants.lengthToMiddleOfScale, 0f));
+    		addSequential(new RotateToAngle(90f));
+    		addSequential(new DriveTo(FieldConstants.toScaleAfterTurn, 90f));
+    		
+    		
+    }
 }
