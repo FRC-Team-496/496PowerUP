@@ -100,32 +100,7 @@ public class DriveTrain extends Subsystem {
 
   }
 
-  public void drive(XboxController xbox) {
-    double currentRotationRate;
-    
-    if(xbox.getX(Hand.kLeft) < 0.1 && xbox.getX(Hand.kLeft) > -0.1 && xbox.getX(Hand.kRight) <0.1 && xbox.getX(Hand.kRight) > -0.1) {
-      System.out.println(xbox.getX(Hand.kLeft));
-      turnController.enable();
-      turnController.setSetpoint(ahrs.getYaw());
-      currentRotationRate = dummyOutput.get() * -1;
-      
-    } 
-    else if(xbox.getX(Hand.kRight) > 0.1 || xbox.getX(Hand.kRight) < -0.1) {
-      ahrs.reset();
-      turnController.enable();
-      turnController.setSetpoint(0);
-      currentRotationRate = dummyOutput.get() * -1;
-      drive(0, xbox.getX(Hand.kRight), currentRotationRate);
-    }
-    else {
-      turnController.disable();
-      currentRotationRate = -xbox.getX(Hand.kLeft);
-    }
-    
-    drive(xbox.getY(Hand.kRight), xbox.getX(Hand.kRight),
-        currentRotationRate);
-  }
-
+  
   public void stop() {
     driveTrain.driveCartesian(0, 0, 0);
   }
