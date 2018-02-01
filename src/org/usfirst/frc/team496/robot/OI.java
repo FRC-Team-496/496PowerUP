@@ -7,7 +7,9 @@
 
 package org.usfirst.frc.team496.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,7 +48,10 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public OI() {
-		
+		JoystickButton leftBumper = new JoystickButton(xbox,4);
+		//leftBumper.whileHeld(new StrafeLeft());
+		JoystickButton rightBumper = new JoystickButton(xbox,5);
+		//rightBumper.whileHeld(new StrafeRight());
 	}
 	
 	public XboxController getJoystick() {
