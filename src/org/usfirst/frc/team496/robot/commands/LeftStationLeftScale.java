@@ -26,10 +26,11 @@ public class LeftStationLeftScale extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-      System.out.println("LEft Station LEft SCale");
+    		System.out.println("Left Station Left Scale");
     		addSequential(new DriveTo(FieldConstants.lengthToMiddleOfScale, 0f));
     		addSequential(new RotateToAngle(90f));
-    		addSequential(new DriveTo(FieldConstants.toScaleAfterTurn, 90f));
+
+    		
     		
     		
     }

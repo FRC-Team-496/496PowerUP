@@ -32,6 +32,6 @@ public class LeftStationRightSwitch extends CommandGroup {
         addSequential(new RotateToAngle(90f));
         addSequential(new DriveTo(FieldConstants.lengthOfSwitches, 90f));
         addSequential(new RotateToAngle(180f));
-        addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn, 180f));
+        addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn, -90f));
     }
 }

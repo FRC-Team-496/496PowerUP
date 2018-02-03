@@ -8,6 +8,7 @@
 package org.usfirst.frc.team496.robot;
 
 import org.usfirst.frc.team496.robot.commands.Auto;
+import org.usfirst.frc.team496.robot.commands.CenterStationAutoLineOnly;
 import org.usfirst.frc.team496.robot.commands.CenterStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.DriveTo;
 import org.usfirst.frc.team496.robot.commands.LeftOrRightAutoLineOnly;
@@ -132,7 +133,13 @@ public class Robot extends TimedRobot {
 		public void	centerStart(String gameData)
 		{
 			
-			if(gameData.charAt(0) == 'L')
+			if(crossTheAutoLine.getSelected() == true)
+			{
+				Command x = new CenterStationAutoLineOnly();
+				x.start();
+			}
+			
+			else if(gameData.charAt(0) == 'L')
 			{
 				Command x = new CenterStationLeftSwitch();
 				x.start();
