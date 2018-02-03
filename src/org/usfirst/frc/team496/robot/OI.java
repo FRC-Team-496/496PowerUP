@@ -7,7 +7,9 @@
 
 package org.usfirst.frc.team496.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -23,6 +25,7 @@ public class OI {
 	// Button button = new JoystickButton(stick, buttonNumber);
 	
 	private XboxController xbox = new XboxController(0);
+	private XboxController op = new XboxController(1);
 
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
@@ -45,10 +48,18 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public OI() {
-		
+		JoystickButton leftBumper = new JoystickButton(xbox,4);
+		//leftBumper.whileHeld(new StrafeLeft());
+		JoystickButton rightBumper = new JoystickButton(xbox,5);
+		//rightBumper.whileHeld(new StrafeRight());
 	}
 	
 	public XboxController getJoystick() {
 		return xbox;
+	}
+	
+	public XboxController getOpStick() {
+	  return op;
+	  
 	}
 }
