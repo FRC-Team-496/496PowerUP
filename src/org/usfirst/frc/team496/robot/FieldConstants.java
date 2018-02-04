@@ -11,6 +11,7 @@ public final class FieldConstants
 	public static final double centerToLeftSwitch = 10.0; //TODO measure this
 	public static final double centerToLeftSwitchAfterTurn = 10.0; //TODO must be measured and probably calculated in this case
 	public static final double lengthToAutoLine = 10.0; //TODO measure this
+	public static final double lengthToScaleFromPlatform = 10.0; //TODO measure thiss
 	
 	
 	
