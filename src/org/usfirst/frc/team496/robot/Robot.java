@@ -15,6 +15,9 @@ import org.usfirst.frc.team496.robot.commands.LeftOrRightAutoLineOnly;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftScale;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.LeftStationRightSwitch;
+import org.usfirst.frc.team496.robot.commands.RightStationLeftSwitch;
+import org.usfirst.frc.team496.robot.commands.RightStationRightScale;
+import org.usfirst.frc.team496.robot.commands.RightStationRightSwitch;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team496.robot.subsystems.LinearActuator;
@@ -146,11 +149,37 @@ public class Robot extends TimedRobot {
 			}
 		}
 		
+		// 'L' is Left, 'R' is Right, '1' is Switch, '2' is Scale.
 		public void rightStart(String gameData)
 		{
-			if(crossTheAutoLine.getSelected() == true)
+			if (crossTheAutoLine.getSelected() == true)
 			{
 				Command x = new LeftOrRightAutoLineOnly();
+				x.start();
+			}
+			
+			else if (gameData.charAt(0) == 'L' && gameData.charAt(1) == '1') 
+			{
+				System.out.println("Right Station Left Switch");
+				Command x = new RightStationLeftSwitch();
+				x.start();
+			}
+			else if (gameData.charAt(0) == 'R' && gameData.charAt(1) == '1')
+			{
+				System.out.println("Right Station Right Switch");
+				Command x = new RightStationRightSwitch();
+				x.start();
+			}
+			else if (gameData.charAt(0) == 'R' && gameData.charAt(1) == '2')
+			{
+				System.out.println("Right Station Right Scale");
+				Command x = new RightStationRightScale();
+				x.start();
+			}
+			else if (gameData.charAt(0) == 'L' && gameData.charAt(1) == '2')
+			{
+				System.out.println("Right Station Right Scale");
+				Command x = new RightStationRightScale();
 				x.start();
 			}
 		}
