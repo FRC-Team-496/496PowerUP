@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftStationLeftScale extends CommandGroup {
+public class CenterStationRightScale extends CommandGroup {
 
-    public LeftStationLeftScale() {
+    public CenterStationRightScale() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -26,12 +26,19 @@ public class LeftStationLeftScale extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-    		System.out.println("Left Station Left Scale");
-    		addSequential(new DriveTo(FieldConstants.lengthToMiddleOfScale, 0f));
-    		addSequential(new RotateToAngle(90f));
+        System.out.println("Center Station Right Scale");
+        addSequential(new DriveTo(FieldConstants.lengthToAutoLine, 0f));
+        addSequential(new RotateToAngle(90f));
+        addSequential(new DriveTo(FieldConstants.lengthToMovePastSwitchAfterTurn, 90f));
+        addSequential(new RotateToAngle(0f));
+        addSequential(new DriveTo(FieldConstants.lengthFromAutoLineToScale, 0f));
+        
+        
 
-    		
-    		
-    		
+    
+    
+    
     }
+    
+    
 }
