@@ -16,5 +16,5 @@ public final class FieldConstants
 	public static final double lengthFromCubeZoneToEndOfSwitch = 10.0; //TODO measure this
 	public static final double lengthToScaleFromPlatform = 10.0; //TODO measure this
 	public static final double lengthToCenter = 10.0; //TODO measure this
-	
+//	Lol
 }
