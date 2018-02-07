@@ -26,7 +26,6 @@ public class RightStationRightScale extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-//    	Lol
     	
     	System.out.println("Right Station Right Scale");
     	addSequential(new DriveTo(FieldConstants.lengthToMiddleOfScale, 0f));

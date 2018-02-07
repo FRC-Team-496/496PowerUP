@@ -26,7 +26,6 @@ public class RightStationRightSwitch extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-//    	Lol
     	
     	System.out.println("Right Station Right Switch");
     	addSequential(new DriveTo(FieldConstants.lengthToSwitch, 0f));
@@ -34,3 +33,4 @@ public class RightStationRightSwitch extends CommandGroup {
         addSequential(new DriveTo(FieldConstants.toSwitchAfterTurn, -90f));
     }
 }
+
