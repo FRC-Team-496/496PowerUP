@@ -1,5 +1,7 @@
 package org.usfirst.frc.team496.robot.commands;
 
+import org.usfirst.frc.team496.robot.FieldConstants;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -24,5 +26,12 @@ public class RightStationLeftScale extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	System.out.println("Right Station Left Scale");
+    	addSequential(new DriveTo(FieldConstants.lengthPastSwitch, 0f));
+    	addSequential(new RotateToAngle(-90f));
+    	addSequential(new DriveTo(FieldConstants.lengthOfSwitches, 0f));
+    	addSequential(new RotateToAngle(0f));
+    	addSequential(new DriveTo(FieldConstants.lengthToScaleFromPlatform, 0f));
     }
 }
