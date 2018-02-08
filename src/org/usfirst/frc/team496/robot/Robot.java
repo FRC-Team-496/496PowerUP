@@ -10,6 +10,7 @@ package org.usfirst.frc.team496.robot;
 import org.usfirst.frc.team496.robot.commands.Auto;
 import org.usfirst.frc.team496.robot.commands.CenterStationAutoLineOnly;
 import org.usfirst.frc.team496.robot.commands.CenterStationLeftSwitch;
+import org.usfirst.frc.team496.robot.commands.CenterStationRightSwitch;
 import org.usfirst.frc.team496.robot.commands.DriveTo;
 import org.usfirst.frc.team496.robot.commands.LeftOrRightAutoLineOnly;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftScale;
@@ -112,22 +113,27 @@ public class Robot extends TimedRobot {
 				x.start();
 			}
 			
-			else if(gameData.charAt(0) == 'L'&& gameData.charAt(1) == 'R')
+			else if(gameData.charAt(0) == 'L' && gameData.charAt(1) == 'L')
 			{
-				Command x = new LeftStationLeftSwitch();
+				Command x = new LeftStationLeftScale();
 				x.start();
 			}
-			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'R')
+			else if(gameData.charAt(0) == 'L' && gameData.charAt(1) == 'R')
 			{
-			  System.out.println("Left Station RightSwitch");
-
-				 Command x = new LeftStationRightSwitch();
+				 Command x = new LeftStationLeftSwitch();
 				 x.start();
 			}
 			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'L')
 			{
 				Command x = new LeftStationLeftScale();
 				x.start();
+			}
+			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'R')
+			{
+				Command x = new LeftOrRightAutoLineOnly();
+				x.start();
+				// do something with cubes(?)
+
 			}
 		}
 
@@ -142,11 +148,29 @@ public class Robot extends TimedRobot {
 				x.start();
 			}
 			
-			else if(gameData.charAt(0) == 'L')
+			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'R')
+			{
+				Command x = new CenterStationRightSwitch();
+				x.start();
+			}
+			
+			else if(gameData.charAt(0) == 'R' && gameData.charAt(1) == 'L')
+			{
+				Command x = new CenterStationRightSwitch();
+				x.start();
+			}
+			
+			else if(gameData.charAt(0) == 'L' && gameData.charAt(1) == 'R')
 			{
 				Command x = new CenterStationLeftSwitch();
 				x.start();
 			}
+			else if(gameData.charAt(0) == 'L' && gameData.charAt(1) == 'L')
+			{
+				Command x = new CenterStationLeftSwitch();
+				x.start();
+			}
+			
 		}
 		
 		// 'L' is Left, 'R' is Right, '1' is Switch, '2' is Scale.
@@ -158,28 +182,29 @@ public class Robot extends TimedRobot {
 				x.start();
 			}
 			
-			else if (gameData.charAt(0) == 'L' && gameData.charAt(1) == '1') 
+			else if (gameData.charAt(0) == 'L' && gameData.charAt(1) == 'L') 
 			{
-				System.out.println("Right Station Left Switch");
-				Command x = new RightStationLeftSwitch();
+				Command x = new LeftOrRightAutoLineOnly();
+				x.start();
+				// do something with cubes(?)
+
+			}
+			
+			else if (gameData.charAt(0) == 'L' && gameData.charAt(1) == 'R')
+			{
+				Command x = new RightStationRightScale();
 				x.start();
 			}
-			else if (gameData.charAt(0) == 'R' && gameData.charAt(1) == '1')
+			
+			else if (gameData.charAt(0) == 'R' && gameData.charAt(1) == 'R')
 			{
-				System.out.println("Right Station Right Switch");
+				Command x = new RightStationRightScale();
+				x.start();
+			}
+			
+			else if (gameData.charAt(0) == 'R' && gameData.charAt(1) == 'L')
+			{
 				Command x = new RightStationRightSwitch();
-				x.start();
-			}
-			else if (gameData.charAt(0) == 'R' && gameData.charAt(1) == '2')
-			{
-				System.out.println("Right Station Right Scale");
-				Command x = new RightStationRightScale();
-				x.start();
-			}
-			else if (gameData.charAt(0) == 'L' && gameData.charAt(1) == '2')
-			{
-				System.out.println("Right Station Right Scale");
-				Command x = new RightStationRightScale();
 				x.start();
 			}
 		}
