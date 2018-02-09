@@ -15,6 +15,7 @@ import org.usfirst.frc.team496.robot.commands.LeftStationLeftScale;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.LeftStationRightSwitch;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team496.robot.subsystems.Elevator;
 import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
 import org.usfirst.frc.team496.robot.subsystems.LinearActuator;
 
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
 
 	public static DriveTrain driveTrain;
 	public static LinearActuator linActuator;
+	public static Elevator elevator;
 
 	
 	SendableChooser<Command> m_chooser = new SendableChooser<>();

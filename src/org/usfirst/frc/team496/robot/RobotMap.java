@@ -26,6 +26,16 @@ public class RobotMap {
 	public static int rightRearMotor = 3;
 	
 	public static int linearActuator = 4;
+	public static int stage1 = 5;
+	public static int stage2 = 6;
+	
+	
+	public static int stage1EncoderA = 0;
+	public static int stage1EncoderB = 1;
+	public static int stage2EncoderA = 2;
+	public static int stage2EncoderB = 3;
+	
+	
 	
 	
 	
