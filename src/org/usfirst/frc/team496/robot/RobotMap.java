@@ -25,15 +25,23 @@ public class RobotMap {
 	public static int leftRearMotor = 2;
 	public static int rightRearMotor = 3;
 	
-	public static int linearActuator = 4;
-	public static int stage1 = 5;
-	public static int stage2 = 6;
 	
+	public static int stage1 = 4;
+	public static int stage2 = 5;
 	
-	public static int stage1EncoderA = 0;
-	public static int stage1EncoderB = 1;
-	public static int stage2EncoderA = 2;
-	public static int stage2EncoderB = 3;
+	public static int hook = 7;
+	public static int gripper = 6;
+	
+	// DIO PINS
+	public static int leftSideEncoderA = 0;
+	public static int leftSideEncoderB = 1;
+	public static int rightSideEncoderA = 2;
+	public static int rightSideEncoderB = 3;
+	public static int stage1EncoderA = 4;
+	public static int stage1EncoderB = 5;
+	public static int stage2EncoderA = 6;
+	public static int stage2EncoderB = 7;
+	public static int gripperClosed = 8;
 	
 	
 	

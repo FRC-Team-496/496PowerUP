@@ -1,38 +1,43 @@
 package org.usfirst.frc.team496.robot.subsystems;
 
 import org.usfirst.frc.team496.robot.RobotMap;
-import org.usfirst.frc.team496.robot.commands.linearActuator;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *
  */
-public class LinearActuator extends Subsystem {
+public class Gripper extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
+    Spark gripper;
+    DigitalInput limitSwitch;
+    public Gripper() {
+      gripper = new Spark(RobotMap.gripper);
+      limitSwitch = new DigitalInput(RobotMap.gripperClosed);
+      
+    }
 
-    Spark linActuator = new Spark(RobotMap.linearActuator);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-      setDefaultCommand(new linearActuator());
     }
     
-    public void drive(double speed) {
-      linActuator.set(speed);
+    public void set(double speed) {
+      gripper.set(speed);
     }
     
-    public void drive(XboxController xbox) {
-      drive(xbox.getY(Hand.kRight));
+    public boolean isClosed() {
+      return limitSwitch.get();
     }
     
     public void stop() {
-      drive(0);
+      gripper.set(0);
     }
+    
+    
 }
 

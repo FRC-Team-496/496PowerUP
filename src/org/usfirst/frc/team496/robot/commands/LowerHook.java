@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftWithJoystick extends Command {
+public class LowerHook extends Command {
 
-    public LiftWithJoystick() {
+    public LowerHook() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.elevator);
+      requires(Robot.hook);
     }
 
     // Called just before this Command runs the first time
@@ -21,7 +21,7 @@ public class LiftWithJoystick extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-      Robot.elevator.drive(Robot.m_oi.getOpStick());
+      Robot.hook.set(0.5);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -31,12 +31,12 @@ public class LiftWithJoystick extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.elevator.stop();
+      Robot.hook.stop();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	end();
+      end();
     }
 }
