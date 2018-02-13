@@ -7,12 +7,9 @@ import org.usfirst.frc.team496.util.DummyPIDOutput;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -40,7 +37,7 @@ public class DriveTrain extends Subsystem {
   AHRS ahrs;
 
 
-  Encoder enc1 = new Encoder(0, 1, true, Encoder.EncodingType.k4X);
+  Encoder enc1 = new Encoder(RobotMap.leftSideEncoderA, RobotMap.leftSideEncoderB, true, Encoder.EncodingType.k4X);
 
   double wheel = 6.5;
   double wheel1Ticks = 1082; // our measure was 328

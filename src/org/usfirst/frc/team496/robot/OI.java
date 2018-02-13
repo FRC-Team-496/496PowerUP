@@ -7,6 +7,12 @@
 
 package org.usfirst.frc.team496.robot;
 
+import org.usfirst.frc.team496.robot.commands.CloseGripper;
+import org.usfirst.frc.team496.robot.commands.CloseGripperAuto;
+import org.usfirst.frc.team496.robot.commands.LowerHook;
+import org.usfirst.frc.team496.robot.commands.OpenGripper;
+import org.usfirst.frc.team496.robot.commands.RaiseHook;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -48,10 +54,19 @@ public class OI {
 	// button.whenReleased(new ExampleCommand());
 	
 	public OI() {
-		JoystickButton leftBumper = new JoystickButton(xbox,4);
-		//leftBumper.whileHeld(new StrafeLeft());
-		JoystickButton rightBumper = new JoystickButton(xbox,5);
-		//rightBumper.whileHeld(new StrafeRight());
+		JoystickButton leftBumper = new JoystickButton(op,5);
+		leftBumper.whileHeld(new OpenGripper());
+		JoystickButton rightBumper = new JoystickButton(op,6);
+		rightBumper.whileHeld(new CloseGripper());
+		
+		JoystickButton leftBumperX = new JoystickButton(xbox, 5);
+		leftBumperX.whileHeld(new RaiseHook());
+		JoystickButton rightBumperX = new JoystickButton(xbox, 6);
+		rightBumperX.whileHeld(new LowerHook());
+		
+		JoystickButton a = new JoystickButton(op, 1);
+		a.whenPressed(new CloseGripperAuto());
+		
 	}
 	
 	public XboxController getJoystick() {

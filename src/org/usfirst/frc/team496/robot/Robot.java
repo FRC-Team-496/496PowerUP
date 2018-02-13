@@ -7,16 +7,15 @@
 
 package org.usfirst.frc.team496.robot;
 
-import org.usfirst.frc.team496.robot.commands.Auto;
 import org.usfirst.frc.team496.robot.commands.CenterStationLeftSwitch;
-import org.usfirst.frc.team496.robot.commands.DriveTo;
 import org.usfirst.frc.team496.robot.commands.LeftOrRightAutoLineOnly;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftScale;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.LeftStationRightSwitch;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team496.robot.subsystems.ExampleSubsystem;
-import org.usfirst.frc.team496.robot.subsystems.LinearActuator;
+import org.usfirst.frc.team496.robot.subsystems.Elevator;
+import org.usfirst.frc.team496.robot.subsystems.Gripper;
+import org.usfirst.frc.team496.robot.subsystems.Hook;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -33,11 +32,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
-	public static final ExampleSubsystem kExampleSubsystem = new ExampleSubsystem();
-	public static OI m_oi;
+	
+	
 
 	public static DriveTrain driveTrain;
-	public static LinearActuator linActuator;
+	public static Gripper gripper;
+	public static Elevator elevator;
+	public static Hook hook;
+	public static OI m_oi;
 
 	
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -49,12 +51,15 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		m_oi = new OI();
+		
 
 		driveTrain = new DriveTrain();
-		linActuator = new LinearActuator();
+		elevator = new Elevator();
+		gripper = new Gripper();
+		hook = new Hook();
 
-
+		//OI MUST BE INSTANTIATED AFTER ALL SUBSYSTEMS OR IT WILL THROW A NULL SUBSYSTEM ERROR
+		m_oi = new OI();
 	
 
 		driverStationPosition.addObject("Left Station", "Left Station");
@@ -205,6 +210,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+	    
 		Scheduler.getInstance().run();
 	
 		
