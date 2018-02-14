@@ -19,7 +19,8 @@ public class RobotMap {
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
 	
-	// Speed Controller PWM Ports
+	
+  // Speed Controller PWM Ports
 	public static int leftFrontMotor = 0;
 	public static int rightFrontMotor = 1;
 	public static int leftRearMotor = 2;
@@ -29,20 +30,29 @@ public class RobotMap {
 	public static int stage1 = 4;
 	public static int stage2 = 5;
 	
-	public static int hook = 7;
+	
 	public static int gripper = 6;
+	public static int hook = 7;
+	public static final int winch = 8;
+	public static final int arm = 9;
 	
 	// DIO PINS
-	public static int leftSideEncoderA = 0;
-	public static int leftSideEncoderB = 1;
-	public static int rightSideEncoderA = 2;
-	public static int rightSideEncoderB = 3;
-	public static int stage1EncoderA = 4;
-	public static int stage1EncoderB = 5;
-	public static int stage2EncoderA = 6;
-	public static int stage2EncoderB = 7;
-	public static int gripperClosed = 8;
+	public final static int leftSideEncoderA = 0;
+	public final static int leftSideEncoderB = 1;
+	public final static int rightSideEncoderA = 2;
+	public final static int rightSideEncoderB = 3;
+	public final static int stage1EncoderA = 4;
+	public final static int stage1EncoderB = 5;
+	public final static int stage2EncoderA = 6;
+	public final static int stage2EncoderB = 7;
+	public final static int gripperClosed = 8;
+	public final static int gripperOpen = 9;
 	
+	//Solenoids
+	
+	public static int hookSolUp = 0;
+	public static int hookSoDown = 1;
+  
 	
 	
 	

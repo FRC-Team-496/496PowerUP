@@ -9,9 +9,12 @@ package org.usfirst.frc.team496.robot;
 
 import org.usfirst.frc.team496.robot.commands.CloseGripper;
 import org.usfirst.frc.team496.robot.commands.CloseGripperAuto;
+import org.usfirst.frc.team496.robot.commands.DeployHook;
 import org.usfirst.frc.team496.robot.commands.LowerHook;
 import org.usfirst.frc.team496.robot.commands.OpenGripper;
+import org.usfirst.frc.team496.robot.commands.OpenGripperAuto;
 import org.usfirst.frc.team496.robot.commands.RaiseHook;
+import org.usfirst.frc.team496.robot.commands.hook.RetractHook;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -66,6 +69,13 @@ public class OI {
 		
 		JoystickButton a = new JoystickButton(op, 1);
 		a.whenPressed(new CloseGripperAuto());
+		JoystickButton b = new JoystickButton(op, 2);
+		b.whenPressed(new OpenGripperAuto());
+		
+		JoystickButton x = new JoystickButton(op,3);
+		JoystickButton y = new JoystickButton(op,4);
+		y.whenPressed(new DeployHook());
+		x.whenPressed(new RetractHook());
 		
 	}
 	

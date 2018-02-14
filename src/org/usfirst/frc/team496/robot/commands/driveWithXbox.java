@@ -29,6 +29,10 @@ public class driveWithXbox extends Command {
     double y = Robot.m_oi.getJoystick().getY(Hand.kRight);
     double x = Robot.m_oi.getJoystick().getX(Hand.kRight);
     double rot = Robot.m_oi.getJoystick().getX(Hand.kLeft);
+    
+    double a1 = 0.577; //between 0 and 1
+    y = a1 * Math.pow(y, 3) + (1-a1) * y;
+    //x = a * Math.pow(y, 3) + (1-a) * y;
     double gyroAngle = Robot.driveTrain.getGyro().getAngle();
     if (Math.abs(rot) < 0.1) {
       rot = 0;

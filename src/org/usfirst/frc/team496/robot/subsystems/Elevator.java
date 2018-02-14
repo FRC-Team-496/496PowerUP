@@ -15,20 +15,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Elevator extends Subsystem {
 
     private static final double STAGE2_DISTANCE_PER_PULSE = 0; //TODO Determine Distance Per Pulse
-	private static final double STAGE1_DISTANCE_PER_PULSE = 0; //TODO Determine Distance Per Pulse
+	private static final double STAGE1_DISTANCE_PER_PULSE = 0.004; //TODO Determine Distance Per Pulse
+	
 	// Put methods for controlling this subsystem
     // here. Call these from Commands.
 	Spark stage1;
 	Spark stage2;
+	Encoder stage1Encoder, stage2Encoder;
 	
-	Encoder stage1Encoder = new Encoder(RobotMap.stage1EncoderA, RobotMap.stage1EncoderB, false, Encoder.EncodingType.k4X);
-	Encoder stage2Encoder = new Encoder(RobotMap.stage2EncoderA, RobotMap.stage2EncoderB, false, Encoder.EncodingType.k4X);
 	
 	
 	
 	public Elevator() {
 	   stage1 = new Spark(RobotMap.stage1);
 	   stage2 = new Spark(RobotMap.stage2);
+	   stage1Encoder = new Encoder(RobotMap.stage1EncoderA, RobotMap.stage1EncoderB, true, Encoder.EncodingType.k4X);
+	    stage2Encoder = new Encoder(RobotMap.stage2EncoderA, RobotMap.stage2EncoderB, false, Encoder.EncodingType.k4X);
 		stage1Encoder.setDistancePerPulse(STAGE1_DISTANCE_PER_PULSE);
 		stage2Encoder.setDistancePerPulse(STAGE2_DISTANCE_PER_PULSE);
 	}

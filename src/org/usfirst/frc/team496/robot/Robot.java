@@ -17,6 +17,7 @@ import org.usfirst.frc.team496.robot.subsystems.Elevator;
 import org.usfirst.frc.team496.robot.subsystems.Gripper;
 import org.usfirst.frc.team496.robot.subsystems.Hook;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -52,7 +53,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		
-
+	    
 		driveTrain = new DriveTrain();
 		elevator = new Elevator();
 		gripper = new Gripper();
@@ -210,7 +211,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-	    
+	
+	    System.out.println(Robot.elevator.getStage1Enc().getDistance());
 		Scheduler.getInstance().run();
 	
 		

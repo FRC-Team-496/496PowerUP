@@ -14,10 +14,11 @@ public class Gripper extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
     Spark gripper;
-    DigitalInput limitSwitch;
+    DigitalInput limitSwitchClosed, limitSwitchOpen;
     public Gripper() {
       gripper = new Spark(RobotMap.gripper);
-      limitSwitch = new DigitalInput(RobotMap.gripperClosed);
+      limitSwitchClosed = new DigitalInput(RobotMap.gripperClosed);
+      limitSwitchOpen = new DigitalInput(RobotMap.gripperOpen);
       
     }
 
@@ -31,7 +32,11 @@ public class Gripper extends Subsystem {
     }
     
     public boolean isClosed() {
-      return limitSwitch.get();
+      return limitSwitchClosed.get();
+    }
+    
+    public boolean isOpen() {
+      return limitSwitchOpen.get();
     }
     
     public void stop() {
