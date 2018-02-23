@@ -12,13 +12,16 @@ import org.usfirst.frc.team496.robot.commands.LeftOrRightAutoLineOnly;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftScale;
 import org.usfirst.frc.team496.robot.commands.LeftStationLeftSwitch;
 import org.usfirst.frc.team496.robot.commands.LeftStationRightSwitch;
+import org.usfirst.frc.team496.robot.subsystems.Arm;
 import org.usfirst.frc.team496.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team496.robot.subsystems.Elevator;
 import org.usfirst.frc.team496.robot.subsystems.Gripper;
 import org.usfirst.frc.team496.robot.subsystems.Hook;
+import org.usfirst.frc.team496.robot.subsystems.PDP;
+import org.usfirst.frc.team496.robot.subsystems.Winch;
 
-import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -40,7 +43,11 @@ public class Robot extends TimedRobot {
 	public static Gripper gripper;
 	public static Elevator elevator;
 	public static Hook hook;
+	public static Winch winch;
+	public static Arm arm;
 	public static OI m_oi;
+	public static PDP pdp;
+
 
 	
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -57,7 +64,11 @@ public class Robot extends TimedRobot {
 		driveTrain = new DriveTrain();
 		elevator = new Elevator();
 		gripper = new Gripper();
+		winch = new Winch();
 		hook = new Hook();
+		arm = new Arm();
+		pdp = new PDP();
+
 
 		//OI MUST BE INSTANTIATED AFTER ALL SUBSYSTEMS OR IT WILL THROW A NULL SUBSYSTEM ERROR
 		m_oi = new OI();
@@ -70,6 +81,10 @@ public class Robot extends TimedRobot {
 		crossTheAutoLine.addObject("True", true);
         SmartDashboard.putData("Station Position", driverStationPosition);
         SmartDashboard.putData("Cross The Auto Line Only", crossTheAutoLine);
+        
+        
+        
+        //SmartDashboard.putData("POT", Robot.arm.getPot());
 		
 
 	}
@@ -87,6 +102,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	}
 
 	/**
@@ -192,6 +208,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		log();
 	
 	}
 
@@ -212,8 +229,20 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 	
-	    System.out.println(Robot.elevator.getStage1Enc().getDistance());
+
+	    
 		Scheduler.getInstance().run();
+		log();
+	      //System.out.println(Robot.elevator.getStage2Enc().get());
+        // SmartDashboard.putData(Robot.arm.getPot());
+        //System.out.println(Robot.arm.getPot().get);
+      SmartDashboard.putBoolean("UnderControl", Robot.driveTrain.getUnderControl());
+      SmartDashboard.putData("Stage 1", Robot.elevator.getStage1Enc());
+      SmartDashboard.putData("Stage 2", Robot.elevator.getStage2Enc());
+      SmartDashboard.putNumber("Stage 1 Raw", Robot.elevator.getStage1Enc().getRaw());
+      SmartDashboard.putNumber("Stage 2 Raw", Robot.elevator.getStage2Enc().getRaw());
+     // SmartDashboard.putNumber("Arm POT", Robot.arm.getPot().getAverageVoltage());
+        SmartDashboard.putNumber("pot angle", Robot.arm.getPot().get());
 	
 		
 	}
@@ -223,5 +252,9 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void testPeriodic() {
+	}
+	
+	public void log() {
+	  pdp.log();
 	}
 }

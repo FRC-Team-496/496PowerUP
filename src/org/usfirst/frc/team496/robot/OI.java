@@ -7,16 +7,20 @@
 
 package org.usfirst.frc.team496.robot;
 
-import org.usfirst.frc.team496.robot.commands.CloseGripper;
 import org.usfirst.frc.team496.robot.commands.CloseGripperAuto;
 import org.usfirst.frc.team496.robot.commands.DeployHook;
+import org.usfirst.frc.team496.robot.commands.KickBack;
+import org.usfirst.frc.team496.robot.commands.KickIt;
+import org.usfirst.frc.team496.robot.commands.KickOut;
 import org.usfirst.frc.team496.robot.commands.LowerHook;
-import org.usfirst.frc.team496.robot.commands.OpenGripper;
 import org.usfirst.frc.team496.robot.commands.OpenGripperAuto;
 import org.usfirst.frc.team496.robot.commands.RaiseHook;
+import org.usfirst.frc.team496.robot.commands.SetArmSetpoint;
+import org.usfirst.frc.team496.robot.commands.ToggleGyro;
+import org.usfirst.frc.team496.robot.commands.WinchIn;
+import org.usfirst.frc.team496.robot.commands.WinchOut;
 import org.usfirst.frc.team496.robot.commands.hook.RetractHook;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -58,9 +62,9 @@ public class OI {
 	
 	public OI() {
 		JoystickButton leftBumper = new JoystickButton(op,5);
-		leftBumper.whileHeld(new OpenGripper());
+		leftBumper.whileHeld(new WinchIn());
 		JoystickButton rightBumper = new JoystickButton(op,6);
-		rightBumper.whileHeld(new CloseGripper());
+		rightBumper.whileHeld(new WinchOut());
 		
 		JoystickButton leftBumperX = new JoystickButton(xbox, 5);
 		leftBumperX.whileHeld(new RaiseHook());
@@ -76,6 +80,23 @@ public class OI {
 		JoystickButton y = new JoystickButton(op,4);
 		y.whenPressed(new DeployHook());
 		x.whenPressed(new RetractHook());
+		
+		JoystickButton aDriver = new JoystickButton(xbox, 1);
+		aDriver.whileHeld(new KickBack());
+		
+		JoystickButton bDriver = new JoystickButton(xbox, 2);
+		bDriver.whileHeld(new KickOut());
+		
+		JoystickButton xDriver = new JoystickButton(xbox,3);
+		xDriver.whenPressed(new KickIt());
+		
+		JoystickButton yDriver = new JoystickButton(xbox, 4);
+		yDriver.whenPressed(new SetArmSetpoint(50));
+		
+		JoystickButton start = new JoystickButton(xbox, 8);
+		start.whenPressed(new ToggleGyro());
+		
+		
 		
 	}
 	

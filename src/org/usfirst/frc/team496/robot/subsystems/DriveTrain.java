@@ -21,6 +21,7 @@ public class DriveTrain extends Subsystem {
 
   private int ahrsOnTargetCounter = 0;
   private static final int MINIMUM_AHRS_ON_TARGET_ITERATIONS = 4;
+  private boolean underControl = false;
 
   private static final double ABS_TOLERANCE_ROTATETO = 1;
   // Put methods for controlling this subsystem
@@ -79,11 +80,13 @@ public class DriveTrain extends Subsystem {
     turnController.setOutputRange(-.5, .5);
     turnController.setInputRange(-180f, 180f);
     turnController.setContinuous(true);
-    SmartDashboard.putData("Turn Controller", turnController);
+    //SmartDashboard.putData("Turn Controller", turnController);
 
     enc1.setDistancePerPulse(ticks);
     enc1.reset();
     driveTo = new PIDController(1, 0, 0, enc1, dummy2);
+    
+    SmartDashboard.putBoolean("UnderControl", underControl);
   }
 
   public void initDefaultCommand() {
@@ -177,6 +180,14 @@ public class DriveTrain extends Subsystem {
 
   public void resetEnc1() {
     enc1.reset();
+  }
+  
+  public boolean getUnderControl() {
+    return underControl;
+  }
+  
+  public void setUnderControl() {
+    underControl = !underControl;
   }
 
 
