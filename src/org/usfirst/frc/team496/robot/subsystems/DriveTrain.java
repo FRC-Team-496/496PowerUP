@@ -189,6 +189,10 @@ public class DriveTrain extends Subsystem {
   public void setUnderControl() {
     underControl = !underControl;
   }
+  
+  public void log() {
+	  SmartDashboard.putBoolean("Under Control", underControl);
+  }
 
 
 } // EOC

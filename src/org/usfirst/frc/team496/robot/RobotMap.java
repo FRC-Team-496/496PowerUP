@@ -18,24 +18,21 @@ public class RobotMap {
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
-	
-	
-  // Speed Controller PWM Ports
+
+	// Speed Controller PWM Ports
 	public final static int leftFrontMotor = 0;
 	public final static int rightFrontMotor = 1;
 	public final static int leftRearMotor = 2;
 	public final static int rightRearMotor = 3;
-	
-	
+
 	public final static int stage1 = 4;
 	public final static int stage2 = 5;
-	
-	
+
 	public final static int gripper = 6;
 	public final static int hook = 7;
-	public final static  int winch = 8;
-	public final static  int arm = 9;
-	
+	public final static int winch = 8;
+	public final static int arm = 9;
+
 	// DIO PINS
 	public final static int leftSideEncoderA = 0;
 	public final static int leftSideEncoderB = 1;
@@ -47,17 +44,19 @@ public class RobotMap {
 	public final static int stage2EncoderB = 7;
 	public final static int gripperClosed = 8;
 	public final static int gripperOpen = 9;
-	
-	//Solenoids
-	
+
+	// Solenoids
+
 	public final static int hookSolUp = 0;
 	public final static int hookSoDown = 1;
-  
+
+	// Elevator Lift Constants
+	public final static int STAGE1_MAX_HEIGHT = 48; //TODO determine max travel 
+	public final static int STAGE2_MAX_HEIGHT = 48; //TODO determine max travel 
 	
-	
-	
-	
-	
+	public final static int SCALE_HEIGHT = 0; //TODO
+	public final static int SWITCH_HEIGHT = 0; //TODO
+
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
 	// public static int rangefinderPort = 1;

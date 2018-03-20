@@ -12,10 +12,12 @@ import org.usfirst.frc.team496.robot.commands.DeployHook;
 import org.usfirst.frc.team496.robot.commands.KickBack;
 import org.usfirst.frc.team496.robot.commands.KickIt;
 import org.usfirst.frc.team496.robot.commands.KickOut;
+import org.usfirst.frc.team496.robot.commands.LiftTo;
 import org.usfirst.frc.team496.robot.commands.LowerHook;
 import org.usfirst.frc.team496.robot.commands.OpenGripperAuto;
 import org.usfirst.frc.team496.robot.commands.RaiseHook;
 import org.usfirst.frc.team496.robot.commands.SetArmSetpoint;
+import org.usfirst.frc.team496.robot.commands.Stage1SetSetpoint;
 import org.usfirst.frc.team496.robot.commands.ToggleGyro;
 import org.usfirst.frc.team496.robot.commands.WinchIn;
 import org.usfirst.frc.team496.robot.commands.WinchOut;
@@ -66,10 +68,10 @@ public class OI {
 		JoystickButton rightBumper = new JoystickButton(op,6);
 		rightBumper.whileHeld(new WinchOut());
 		
-		JoystickButton leftBumperX = new JoystickButton(xbox, 5);
+/*		JoystickButton leftBumperX = new JoystickButton(xbox, 5);
 		leftBumperX.whileHeld(new RaiseHook());
 		JoystickButton rightBumperX = new JoystickButton(xbox, 6);
-		rightBumperX.whileHeld(new LowerHook());
+		rightBumperX.whileHeld(new LowerHook());*/
 		
 		JoystickButton a = new JoystickButton(op, 1);
 		a.whenPressed(new CloseGripperAuto());
@@ -77,9 +79,10 @@ public class OI {
 		b.whenPressed(new OpenGripperAuto());
 		
 		JoystickButton x = new JoystickButton(op,3);
-		JoystickButton y = new JoystickButton(op,4);
+	/*	JoystickButton y = new JoystickButton(op,4);
 		y.whenPressed(new DeployHook());
-		x.whenPressed(new RetractHook());
+		x.whenPressed(new RetractHook());*/
+		x.whenPressed(new LiftTo(20));
 		
 		JoystickButton aDriver = new JoystickButton(xbox, 1);
 		aDriver.whileHeld(new KickBack());
