@@ -71,5 +71,6 @@ public class Stage1 extends PIDSubsystem {
     
     public void log() {
     	SmartDashboard.putData("Stage1Encoder", stage1Encoder);
+    	SmartDashboard.putNumber("Stage1Encoder Value", stage1Encoder.get());
     }
 }
