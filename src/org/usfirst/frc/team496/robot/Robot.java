@@ -19,6 +19,9 @@ import org.usfirst.frc.team496.robot.subsystems.Gripper;
 import org.usfirst.frc.team496.robot.subsystems.Hook;
 import org.usfirst.frc.team496.robot.subsystems.PDP;
 import org.usfirst.frc.team496.robot.subsystems.Winch;
+import org.usfirst.frc.team496.robot.subsystems.Stage1;
+import org.usfirst.frc.team496.robot.subsystems.Stage2;
+
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -41,12 +44,14 @@ public class Robot extends TimedRobot {
 
 	public static DriveTrain driveTrain;
 	public static Gripper gripper;
-	public static Elevator elevator;
+	//public static Elevator elevator;
 	public static Hook hook;
 	public static Winch winch;
 	public static Arm arm;
 	public static OI m_oi;
 	public static PDP pdp;
+	public static Stage1 stage1;
+	public static Stage2 stage2;
 
 
 	
@@ -62,7 +67,9 @@ public class Robot extends TimedRobot {
 		
 	    
 		driveTrain = new DriveTrain();
-		elevator = new Elevator();
+		//elevator = new Elevator();
+		stage1 = new Stage1();
+		stage2 = new Stage2();
 		gripper = new Gripper();
 		winch = new Winch();
 		hook = new Hook();
@@ -237,10 +244,7 @@ public class Robot extends TimedRobot {
         // SmartDashboard.putData(Robot.arm.getPot());
         //System.out.println(Robot.arm.getPot().get);
       SmartDashboard.putBoolean("UnderControl", Robot.driveTrain.getUnderControl());
-      SmartDashboard.putData("Stage 1", Robot.elevator.getStage1Enc());
-      SmartDashboard.putData("Stage 2", Robot.elevator.getStage2Enc());
-      SmartDashboard.putNumber("Stage 1 Raw", Robot.elevator.getStage1Enc().getRaw());
-      SmartDashboard.putNumber("Stage 2 Raw", Robot.elevator.getStage2Enc().getRaw());
+     
      // SmartDashboard.putNumber("Arm POT", Robot.arm.getPot().getAverageVoltage());
         SmartDashboard.putNumber("pot angle", Robot.arm.getPot().get());
 	
@@ -256,5 +260,7 @@ public class Robot extends TimedRobot {
 	
 	public void log() {
 	  pdp.log();
+	  stage1.log();
+	  stage2.log();
 	}
 }
