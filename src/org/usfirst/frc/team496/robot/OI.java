@@ -82,16 +82,16 @@ public class OI {
 		x.whenPressed(new RetractHook());
 		
 		JoystickButton aDriver = new JoystickButton(xbox, 1);
-		aDriver.whileHeld(new KickBack());
+		aDriver.whileHeld(new RaiseHook());
 		
 		JoystickButton bDriver = new JoystickButton(xbox, 2);
-		bDriver.whileHeld(new KickOut());
+		bDriver.whileHeld(new LowerHook());
 		
 		JoystickButton xDriver = new JoystickButton(xbox,3);
 		xDriver.whenPressed(new KickIt());
 		
 		JoystickButton yDriver = new JoystickButton(xbox, 4);
-		yDriver.whenPressed(new SetArmSetpoint(50));
+		yDriver.whileHeld(new KickOut());
 		
 		JoystickButton start = new JoystickButton(xbox, 8);
 		start.whenPressed(new ToggleGyro());

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team496.robot.subsystems;
 
+
 import org.usfirst.frc.team496.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
@@ -7,6 +8,7 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team496.robot.commands.SetArmSetpoint;
 
 /**
  *
@@ -35,6 +37,7 @@ public class Arm extends PIDSubsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+	setDefaultCommand(new SetArmSetpoint(-40));
   }
 
   public void set(double speed) {
