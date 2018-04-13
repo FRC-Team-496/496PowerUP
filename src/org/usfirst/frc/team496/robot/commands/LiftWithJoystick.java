@@ -22,12 +22,15 @@ public class LiftWithJoystick extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	m_setpoint1 = Robot.stage1.get();
-    	if(!Robot.stage1.getPIDController().isEnabled()) Robot.stage1.getPIDController().enable();
+    	//if(!Robot.stage1.getPIDController().isEnabled()) Robot.stage1.getPIDController().enable();
     	//m_setpoint2 = Robot.stage2.get();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
+    Robot.stage1.set(Robot.m_oi.getOpStick().getY(Hand.kLeft));
+    Robot.stage2.set(Robot.m_oi.getOpStick().getY(Hand.kRight));
     	
     if(Robot.m_oi.getOpStick().getStickButton(Hand.kLeft)){
     	m_setpoint1 += -Robot.m_oi.getOpStick().getY(Hand.kLeft);
@@ -40,7 +43,7 @@ public class LiftWithJoystick extends Command {
     	}
     }
     	
-    	Robot.stage1.setSetpoint(m_setpoint1);
+    //	Robot.stage1.setSetpoint(m_setpoint1);
     
     
    /* if(Robot.m_oi.getOpStick().getStickButton(Hand.kRight)){

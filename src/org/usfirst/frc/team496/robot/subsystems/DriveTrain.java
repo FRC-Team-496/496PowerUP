@@ -165,7 +165,7 @@ public class DriveTrain extends Subsystem {
       stop();
       return true;
     }
-    driveTrain.driveCartesian(dummy2.get() * -1, 0, dummyOutput.get() * -1);
+    driveTrain.driveCartesian(dummy2.get() * -0.5, 0, dummyOutput.get() * -0.5);
     return false;
   }
 

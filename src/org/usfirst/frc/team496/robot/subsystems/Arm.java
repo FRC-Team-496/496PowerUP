@@ -37,7 +37,7 @@ public class Arm extends PIDSubsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-	setDefaultCommand(new SetArmSetpoint(-40));
+	//setDefaultCommand(new SetArmSetpoint(-40));
   }
 
   public void set(double speed) {
@@ -45,10 +45,10 @@ public class Arm extends PIDSubsystem {
   }
 
   public void log() {
+    SmartDashboard.putData("arm pot", pot); 
+    SmartDashboard.putNumber("pot angle",pot.get());
     
   }
-
-
   public void stop() {
     arm.set(0);
   }

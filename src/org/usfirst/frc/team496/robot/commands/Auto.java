@@ -25,7 +25,7 @@ public class Auto extends CommandGroup {
         // a CommandGroup containing them would require both the chases and the
         // arm.
       addSequential(new RotateToAngle(0f));
-      //addSequential(new DriveTo(20.0,0f));
+      addSequential(new DriveTo(10.0,0f));
       //addSequential(new Delay());
       //addSequential(new RotateToAngle(90f));
       //addSequential(new Delay());

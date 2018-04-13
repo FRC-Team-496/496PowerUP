@@ -1,11 +1,10 @@
 package org.usfirst.frc.team496.robot.subsystems;
 
-import org.usfirst.frc.team496.robot.Robot;
 import org.usfirst.frc.team496.robot.RobotMap;
 import org.usfirst.frc.team496.robot.commands.LiftWithJoystick;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -15,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Stage1 extends PIDSubsystem {
 
-	Victor stage1;
+	Spark stage1;
 	Encoder stage1Encoder;
 	private static final double STAGE1_DISTANCE_PER_PULSE = 0.00432; // TODO Determine Distance Per
     // Initialize your subsystem here
@@ -25,7 +24,7 @@ public class Stage1 extends PIDSubsystem {
         //                  to
         // enable() - Enables the PID controller.
     	super("Stage1", 0.6, 0, 0.0);
-    	stage1 = new Victor(RobotMap.stage1);
+    	stage1 = new Spark(RobotMap.stage1);
     	stage1Encoder = new Encoder(RobotMap.stage1EncoderA,
     	        RobotMap.stage1EncoderB, false, Encoder.EncodingType.k4X);
         stage1Encoder.setDistancePerPulse(STAGE1_DISTANCE_PER_PULSE);

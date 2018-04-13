@@ -26,8 +26,8 @@ public class LeftOrRightAutoLineOnly extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
-      System.out.println("Left or RIght Auto line ONly");
-    		addSequential(new DriveTo(FieldConstants.lengthToAutoLine, 0f));
+    		System.out.println("Left or Right Auto line Only");
+    		addSequential(new DriveTo(-FieldConstants.lengthToAutoLine, 0f));
     		
     }
 }

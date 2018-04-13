@@ -184,10 +184,10 @@ public class Robot extends TimedRobot {
 	
 		String StationPosition = driverStationPosition.getSelected();
 		
-		//Command x = new Auto();
-		//x.start();
+		Command x = new LeftOrRightAutoLineOnly();
+		x.start();
 		
-		String gameData;
+/*		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		System.out.println(gameData);
 		if(StationPosition.equals("Left Station"))
@@ -206,7 +206,7 @@ public class Robot extends TimedRobot {
 		
 		
 		
-		SmartDashboard.putData("AHRS", driveTrain.getGyro());
+		SmartDashboard.putData("AHRS", driveTrain.getGyro());*/
 	}
 
 	/**
@@ -245,8 +245,6 @@ public class Robot extends TimedRobot {
         //System.out.println(Robot.arm.getPot().get);
       SmartDashboard.putBoolean("UnderControl", Robot.driveTrain.getUnderControl());
      
-     // SmartDashboard.putNumber("Arm POT", Robot.arm.getPot().getAverageVoltage());
-        SmartDashboard.putNumber("pot angle", Robot.arm.getPot().get());
 	
 		
 	}
@@ -260,6 +258,7 @@ public class Robot extends TimedRobot {
 	
 	public void log() {
 	  pdp.log();
+	  arm.log();
 	  stage1.log();
 	  stage2.log();
 	}

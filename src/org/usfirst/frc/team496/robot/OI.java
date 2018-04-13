@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+ /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -88,7 +88,7 @@ public class OI {
 		bDriver.whileHeld(new LowerHook());
 		
 		JoystickButton xDriver = new JoystickButton(xbox,3);
-		xDriver.whenPressed(new KickIt());
+		xDriver.whileHeld(new KickBack());
 		
 		JoystickButton yDriver = new JoystickButton(xbox, 4);
 		yDriver.whileHeld(new KickOut());
