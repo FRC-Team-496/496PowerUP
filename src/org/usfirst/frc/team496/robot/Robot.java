@@ -22,7 +22,7 @@ import org.usfirst.frc.team496.robot.subsystems.Winch;
 import org.usfirst.frc.team496.robot.subsystems.Stage1;
 import org.usfirst.frc.team496.robot.subsystems.Stage2;
 
-
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -49,7 +49,7 @@ public class Robot extends TimedRobot {
 	public static Winch winch;
 	public static Arm arm;
 	public static OI m_oi;
-	public static PDP pdp;
+	//public static PDP pdp;
 	public static Stage1 stage1;
 	public static Stage2 stage2;
 
@@ -74,8 +74,9 @@ public class Robot extends TimedRobot {
 		winch = new Winch();
 		hook = new Hook();
 		arm = new Arm();
-		pdp = new PDP();
+		//pdp = new PDP();
 
+		CameraServer.getInstance().startAutomaticCapture();
 
 		//OI MUST BE INSTANTIATED AFTER ALL SUBSYSTEMS OR IT WILL THROW A NULL SUBSYSTEM ERROR
 		m_oi = new OI();
@@ -257,7 +258,7 @@ public class Robot extends TimedRobot {
 	}
 	
 	public void log() {
-	  pdp.log();
+	  //pdp.log();
 	  arm.log();
 	  stage1.log();
 	  stage2.log();

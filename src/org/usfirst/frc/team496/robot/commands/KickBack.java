@@ -26,9 +26,9 @@ public class KickBack extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        if(Robot.arm.getPot().get() >= 55) {
+     /*   if(Robot.arm.getPot().get() >= 70) {
         	return true;
-        }
+        }*/
         return false;
     }
     

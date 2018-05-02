@@ -30,7 +30,7 @@ public class LiftWithJoystick extends Command {
     protected void execute() {
     	
     Robot.stage1.set(Robot.m_oi.getOpStick().getY(Hand.kLeft));
-    Robot.stage2.set(Robot.m_oi.getOpStick().getY(Hand.kRight));
+    Robot.stage2.set(Robot.m_oi.getOpStick().getY(Hand.kRight)*.8);
     	
     if(Robot.m_oi.getOpStick().getStickButton(Hand.kLeft)){
     	m_setpoint1 += -Robot.m_oi.getOpStick().getY(Hand.kLeft);

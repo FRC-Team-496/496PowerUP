@@ -26,9 +26,9 @@ public class KickOut extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-       if(Robot.arm.getPot().get() <= 40) {
+    /*   if(Robot.arm.getPot().get() <= 40) {
     	   return true;
-       }
+       }*/
     	return false;
     }
 
